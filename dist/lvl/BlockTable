@@ -1,0 +1,20 @@
+G Grass
+
+P PlayerPos(cannot be changedddddd)
+
+F GrassBottom
+
+B Brick
+
+W Water
+    <1> Bg Block
+
+R Roots
+    1 RIGHT
+    2 LEFT
+    3 TOP/RIGHT
+    4 TOP/LEFT
+    5 TOP/RIGHT/LEFT
+
+D Dirt
+    2 Dirt2

@@ -1,0 +1,10 @@
+smaller -> In the background
+
+Ground Foilage: 10
+
+TILES: 20
+PLAYER: 30
+CHEST: 40
+WATER: 50
+FOLIAGE: 20, 40
+
