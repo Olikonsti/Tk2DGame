@@ -1,3 +1,4 @@
 from Game import *
+import cProfile
 
-game = Game()
+cProfile.run("Game()")

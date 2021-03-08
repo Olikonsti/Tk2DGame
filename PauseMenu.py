@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-import os
+from GLOBAL import *
 
 class Level():
     def __init__(self, name, frame):
@@ -28,7 +28,7 @@ class PauseMenu(tk.Frame):
         tk.Frame.__init__(self, game)
         self.config(height=500)
         self.config(width=300)
-        for i in os.listdir("lvl"):
+        for i in levels:
             if i.endswith(".lvl"):
                 Level(i, self)
 

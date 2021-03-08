@@ -1,6 +1,6 @@
 G Grass
 
-P PlayerPos(cannot be changedddddd)
+P PlayerPos(cannot be changed)
 
 F GrassBottom
 
@@ -8,6 +8,9 @@ B Brick
 
 W Water
     <1> Bg Block
+
+C Chest
+    <1> Tag # change NBT Data
 
 R Roots
     1 RIGHT

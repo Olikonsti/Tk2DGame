@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['C:\\Users\\Konstantin\\Desktop\\Tk2DGame'],
+             pathex=['X:\\Programming-Python\\Programs\\Tk2DGame'],
              binaries=[],
              datas=[],
              hiddenimports=[],

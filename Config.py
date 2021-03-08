@@ -4,6 +4,7 @@ RenderLayers = 70
 TPS = 44
 TileSize = 56
 DrawCollision = False
+levels = ["teststage.lvl", "JumpAndRun.lvl", "Tutorial.lvl"]
 Debug = True
 x_w_off = 5  # World tile Load offset (shouldnt be changed!)
 y_w_off = 2  # World tile Load offset (shouldnt be changed!)
