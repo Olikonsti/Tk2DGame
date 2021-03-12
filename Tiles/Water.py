@@ -32,10 +32,12 @@ class Water(Tile):
         if Y1IsTile == False and tick % 5 == 0:
             QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX, self.tileY + 1, self.game))
 
-        elif X2IsTile == False and tick % 5 == 0:
+        if X2IsTile == False and tick % 5 == 0:
             QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX - 1, self.tileY, self.game))
 
-        elif X1IsTile == False and tick % 5 == 0:
+        if X1IsTile == False and tick % 5 == 0:
             QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX + 1, self.tileY, self.game))
+
+
 
         Tile.update(self, tick)

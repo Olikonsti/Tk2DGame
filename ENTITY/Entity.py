@@ -39,6 +39,9 @@ class Entity():
 
         RenderItems[layer].append(self)
 
+    def calc_pos(self):
+        pass
+
     def mirror_sprite(self):
         self.image_ = ImageOps.mirror(self.image_)
         self.image = ImageTk.PhotoImage(self.image_)

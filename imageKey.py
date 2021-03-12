@@ -35,16 +35,20 @@ def applySize(canvas):
     print(width)
 
 class KeyBind():
-    def __init__(self, key, master, loop):
+    def __init__(self, key, master, loop, release=None):
         self.app_loop = loop
         self.master = master
         self.master.bind("<" + key + ">", self.click)
-        self.master.bind("<KeyRelease-" + key + ">", self.unclick)
+        if release == None:
+            self.master.bind("<KeyRelease-" + key + ">", self.unclick)
+        else:
+            self.master.bind("<" + release + ">", self.unclick)
         self.clicked = False
 
 
 
     def click(self, event=None):
+        self.event = event
         if self.clicked == False:
             self.clicked = True
             self.app_loop()

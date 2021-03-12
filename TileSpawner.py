@@ -8,10 +8,9 @@ from Tiles.Water import *
 from Entities.Player import *
 from GLOBAL import *
 
+blockList = ["Grass", "Brick"]
 
 def SpawnTiles(list, world):
-
-
     print("Starting Load of " + list)
     try:
         f = open(LevelPath + list, "r")
@@ -26,7 +25,7 @@ def SpawnTiles(list, world):
     if genGround:
         groundOffset = 17
         for i in range(50):
-            GrassBottom(i, groundOffset - 1, layer=10)
+            #GrassBottom(i, groundOffset - 1, layer=10)
             if random.choice([0, 1, 1, 1, 1]) == 0:
                 GrassBunch(i, groundOffset - 1, layer=10)
             Grass(i, groundOffset)

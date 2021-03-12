@@ -15,6 +15,8 @@ class Game(Tk):
 
         self.d = KeyBind("d", self, self.loop)
         self.a = KeyBind("a", self, self.loop)
+        self.lc = KeyBind("Button-1", self, self.loop, release="ButtonRelease-1")
+        self.rc = KeyBind("Button-3", self, self.loop, release="ButtonRelease-3")
         self.space = KeyBind("space", self, self.loop)
         self.resizable(False, False)
         self.bind("<Escape>", self.pause)

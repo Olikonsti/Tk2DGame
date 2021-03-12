@@ -1,5 +1,6 @@
 from ENTITY.Entity import *
 from Events import *
+from TileSpawner import *
 
 
 class Player(Entity):
@@ -48,7 +49,33 @@ class Player(Entity):
 
     def update(self, tick):
 
-        # collisons
+        if self.world.game.rc.clicked:
+            blockX = round((self.world.game.rc.event.x - self.world.xOff) / TileSize)
+            blockY = round((self.world.game.rc.event.y - self.world.yOff) / TileSize)
+            for i in RenderItems:
+                for j in i:
+                    if j.type != "ENTITY":
+                        if j.tileX == blockX and j.tileY == blockY:
+                            print("delet")
+                            i.remove(j)
+                            del j
+
+        if self.world.game.lc.clicked:
+            isBlock = False
+            blockX  = round((self.world.game.lc.event.x - self.world.xOff) / TileSize)
+            blockY = round((self.world.game.lc.event.y - self.world.yOff) / TileSize)
+            for i in RenderItems:
+                for j in i:
+                    if j.type != "ENTITY":
+                        if j.tileX == blockX and j.tileY == blockY:
+                            print("cannot place")
+                            isBlock = True
+
+            # creating Blocks
+            if not isBlock:
+                Grass(blockX, blockY)
+
+
         self.speed = self.startspeed
         collisiony = False
         collisionx1 = False
@@ -57,6 +84,10 @@ class Player(Entity):
         self.inwater = False
         for j in RenderItems:
             for i in j:
+
+
+
+                # collisons
 
                 if DrawCollision:
                     i.collisionBoxes.clear()
