@@ -6,6 +6,7 @@ from Tiles.Brick import *
 from Tiles.Chest import *
 from Tiles.Wood import *
 from Tiles.Explosive import *
+from Tiles.Acid import *
 from Tiles.Virus import *
 from Tiles.Water import *
 from Entities.Player import *

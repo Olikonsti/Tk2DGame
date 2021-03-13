@@ -137,11 +137,11 @@ class Player(Entity):
                     i.collisionBoxes.clear()
                     CollisionBox(i.collisionBoxes, i.x, i.y, i.x + i.width, i.y + i.height, "white")
 
-                if i.collider or i.name == "Water" or i.name == "Virus":
+                if i.collider or i.name == "Water" or i.name == "Virus"or i.name == "Acid":
                     if self.y + self.vely + self.height >= i.y and self.y + self.vely <= i.y + i.height and ((self.x > i.x and self.x < i.x + i.width) or(self.x + self.width > i.x and self.x < i.x + i.width)):
                         if DrawCollision:
                             CollisionBox(i.collisionBoxes, i.x, self.y + self.vely + self.height, i.x + i.width, i.y + i.height, "blue")
-                        if i.name == "Virus":
+                        if i.name == "Virus" or i.name == "Acid":
                             self.die()
                         if i.name != "Water":
                             collisiony = True
@@ -152,7 +152,7 @@ class Player(Entity):
                         if DrawCollision:
                             CollisionBox(i.collisionBoxes, i.x, self.y + self.height - 3, i.x + i.width,
                                      i.y + i.height, "red")
-                        if i.name == "Virus":
+                        if i.name == "Virus" or i.name == "Acid":
                             self.die()
                         if i.name != "Water":
                             collisionytop = True

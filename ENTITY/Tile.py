@@ -46,6 +46,14 @@ class Tile():
     def kill(self):
         pass
 
+    def killblock(self, tx, ty):
+        for i in RenderItems:
+            for j in i:
+                if j.type != "ENTITY":
+                    if j.tileX == tx and j.tileY == ty:
+                        i.remove(j)
+                        del j
+
     def getTileAbove(self):
         block = None
         for i in RenderItems:

@@ -2,7 +2,7 @@ from ENTITY.Tile import *
 from TileSpawner import *
 from Events import *
 
-class Water(Tile):
+class Lava(Tile):
     def __init__(self, tx, ty, game=None, BLOCK=None):
         Tile.__init__(self, tx, ty, 50, "Water.png")
         self.game = GlobalGame[0]
