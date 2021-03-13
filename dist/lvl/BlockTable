@@ -1,0 +1,25 @@
+G Grass
+
+P PlayerPos(cannot be changed only indicator)
+
+F GrassBottom
+
+B Brick
+
+W Wood
+
+L Water
+    <1> Bg Block
+
+C Chest
+    <1> Tag # change NBT Data
+
+R Roots
+    1 RIGHT
+    2 LEFT
+    3 TOP/RIGHT
+    4 TOP/LEFT
+    5 TOP/RIGHT/LEFT
+
+D Dirt
+    2 Dirt2
