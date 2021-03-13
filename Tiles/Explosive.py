@@ -3,7 +3,7 @@ from Events import *
 
 class Explosive(Tile):
     def __init__(self, tx, ty):
-        Tile.__init__(self, tx, ty, 20, "NA.png")
+        Tile.__init__(self, tx, ty, 20, "Explosive.png")
         self.name = "Explosive"
         self.game = GlobalGame[0]
         QEvent(self, self.game, 100, self.explode)
