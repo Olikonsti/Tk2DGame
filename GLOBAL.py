@@ -5,7 +5,7 @@ from PIL import ImageOps
 from Config import *
 
 
-blockList = ["Grass", "Brick", "Water - BROKEN", "Dirt", "Dirt2", "GrassBottom", "GrassBunch", "Roots", "Chest"]
+blockList = ["Grass", "Brick", "Wood", "Dirt", "Dirt2", "GrassBottom", "GrassBunch", "Roots", "Chest"]
 RenderItems = []
 
 for i in range(RenderLayers):  # -

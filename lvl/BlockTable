@@ -6,7 +6,9 @@ F GrassBottom
 
 B Brick
 
-W Water
+W Wood
+
+L Water
     <1> Bg Block
 
 C Chest

@@ -4,6 +4,7 @@ from Tiles.Dirt2 import *
 from Tiles.Foliage import *
 from Tiles.Brick import *
 from Tiles.Chest import *
+from Tiles.Wood import *
 from Tiles.Water import *
 from Entities.Player import *
 from ENTITY.Background import *
@@ -46,9 +47,6 @@ def SpawnTiles(list, world):
         for j in range(200):
             tile = list[i+2][j]
 
-            if tile[0] in blockList:
-                print("FOUND")
-
             if tile[0] == "G":
                 Grass(j + x_w_off, i + y_w_off)
 
@@ -60,6 +58,9 @@ def SpawnTiles(list, world):
                     exec(f'a.{k} = {LevelData["Player"][k]}')
 
             elif tile[0] == "W":
+                Wood(j + x_w_off, i + y_w_off)
+
+            elif tile[0] == "L":
                 block = None
                 if tile[1] == "G":
                     block = "Grass"
