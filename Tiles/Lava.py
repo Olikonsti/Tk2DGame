@@ -4,9 +4,9 @@ from Events import *
 
 class Lava(Tile):
     def __init__(self, tx, ty, game=None, BLOCK=None):
-        Tile.__init__(self, tx, ty, 50, "Water.png")
+        Tile.__init__(self, tx, ty, 50, "Lava.png")
         self.game = GlobalGame[0]
-        self.name = "Water"
+        self.name = "Lava"
         self.collider = False
         if random.choice([0, 1]) == 0:
             self.mirror_sprite()
@@ -33,14 +33,14 @@ class Lava(Tile):
                     elif j.tileX == self.tileX and j.tileY == self.tileY + 1:
                         Y1IsTile = True
 
-        if Y1IsTile == False and tick % 5 == 0:
-            QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX, self.tileY + 1, self.game))
+        if Y1IsTile == False and tick % 10 == 0:
+            QEvent("CreateLava", self.game, 12, lambda: Lava(self.tileX, self.tileY + 1, self.game))
 
         if X2IsTile == False and tick % 5 == 0:
-            QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX - 1, self.tileY, self.game))
+            QEvent("CreateLava", self.game, 12, lambda: Lava(self.tileX - 1, self.tileY, self.game))
 
         if X1IsTile == False and tick % 5 == 0:
-            QEvent("CreateWater", self.game, 2, lambda: Water(self.tileX + 1, self.tileY, self.game))
+            QEvent("CreateLava", self.game, 12, lambda: Lava(self.tileX + 1, self.tileY, self.game))
 
 
 
