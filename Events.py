@@ -22,8 +22,8 @@ class QEvent():
         if not in_l:
             event_queue.append(self)
 
-    def update(self):
-        if self.game.ticks == self.start_tick + self.in_ticks:
+    def update(self, ticks):
+        if ticks >= self.start_tick + self.in_ticks:
             self.run()
 
     def run(self):

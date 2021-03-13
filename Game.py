@@ -34,7 +34,7 @@ class Game(Tk):
 
 
         while True:
-            self.fps_clock.tick(FPS)
+
             self.loop()
 
     def pause(self, event = None):
@@ -51,7 +51,8 @@ class Game(Tk):
             self.pauseMenu.hide()
 
     def loop(self):
-        if self.ticks % 3 == 0:
+        self.fps_clock.tick(FPS)
+        if self.ticks % 3 == 0 or self.paused:
             self.update()
         else:
             self.update_idletasks()
@@ -59,5 +60,5 @@ class Game(Tk):
             self.ticks += 1
             self.level.update_world(self.ticks)
             for i in event_queue:
-                i.update()
+                i.update(self.ticks)
 

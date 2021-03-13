@@ -4,10 +4,10 @@ from Events import *
 
 class Virus(Tile):
     def __init__(self, tx, ty, game=None):
-        Tile.__init__(self, tx, ty, 50, "NA.png")
+        Tile.__init__(self, tx, ty, 50, "Virus.png")
         self.game = GlobalGame[0]
         self.name = "Virus"
-        self.collider = True
+        self.collider = False
         if random.choice([0, 1]) == 0:
             self.mirror_sprite()
 
@@ -20,7 +20,7 @@ class Virus(Tile):
         Y2IsTile = False
         for i in RenderItems:
             for j in i:
-                if j.type == "TILE":
+                if j.name == "Virus":
                     if j.tileX == self.tileX + 1 and j.tileY == self.tileY:
                         X1IsTile = True
                     if j.tileX == self.tileX - 1 and j.tileY == self.tileY:
