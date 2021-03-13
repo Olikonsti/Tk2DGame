@@ -53,9 +53,15 @@ class Player(Entity):
     def update(self, tick):
 
         # break blocks
-        if (self.world.game.rc.clicked) and self.canbreak:
-            blockX = round((self.world.game.rc.event.x - self.world.xOff) / TileSize)
-            blockY = round((self.world.game.rc.event.y - self.world.yOff) / TileSize)
+        if (self.world.game.rc.clicked or self.world.game.mrc.clicked) and self.canbreak:
+            if self.world.game.mrc.clicked:
+                blockX = round((self.world.game.mrc.event.x - self.world.xOff) / TileSize)
+                blockY = round((self.world.game.mrc.event.y - self.world.yOff) / TileSize)
+            else:
+                blockX = round((self.world.game.rc.event.x - self.world.xOff) / TileSize)
+                blockY = round((self.world.game.rc.event.y - self.world.yOff) / TileSize)
+            self.world.game.mrc.clicked = False
+            self.world.game.rc.clicked = False
             for i in RenderItems:
                 for j in i:
                     if j.type != "ENTITY":
@@ -64,10 +70,17 @@ class Player(Entity):
                             del j
 
 
-        if (self.world.game.lc.clicked) and self.canbuild:
+        if (self.world.game.lc.clicked or self.world.game.mlc.clicked) and self.canbuild:
+
             isBlock = False
-            blockX  = round((self.world.game.lc.event.x - self.world.xOff) / TileSize)
-            blockY = round((self.world.game.lc.event.y - self.world.yOff) / TileSize)
+            if self.world.game.mlc.clicked:
+                blockX = round((self.world.game.mlc.event.x - self.world.xOff) / TileSize)
+                blockY = round((self.world.game.mlc.event.y - self.world.yOff) / TileSize)
+            else:
+                blockX = round((self.world.game.lc.event.x - self.world.xOff) / TileSize)
+                blockY = round((self.world.game.lc.event.y - self.world.yOff) / TileSize)
+            self.world.game.mlc.clicked = False
+            self.world.game.lc.clicked = False
             for i in RenderItems:
                 for j in i:
                     if j.type != "ENTITY":

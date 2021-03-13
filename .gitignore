@@ -1,3 +1,4 @@
-build/
-.idea/
-__pycache__/
+*.pyc
+*.html
+*.xml
+*.iml
