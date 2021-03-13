@@ -43,6 +43,9 @@ class Tile():
 
         RenderItems[layer].append(self)
 
+    def kill(self):
+        pass
+
     def getTileAbove(self):
         block = None
         for i in RenderItems:

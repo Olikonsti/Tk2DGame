@@ -1,6 +1,8 @@
 from ENTITY.Entity import *
 from Events import *
 from TileSpawner import *
+from tkinter import *
+from GLOBAL import *
 
 
 class Player(Entity):
@@ -27,6 +29,19 @@ class Player(Entity):
         self.onground = False
 
         self.vely = 0
+        self.create_blockselector()
+
+    def create_blockselector(self):
+        self.typevar = StringVar()
+        self.blockselector_exists = True
+        self.typevar.set(blockList[0])
+        self.blockselector = OptionMenu(self.world.game, self.typevar, *blockList)
+        self.blockselector.config(background="#252525", highlightthickness=0, width=20, fg="lightgrey")
+        self.blockselector["menu"].config(bg="#252525", fg="lightgrey", bd=0)
+        self.blockselector.pack(side=BOTTOM)
+
+    def kill(self):
+        self.blockselector.destroy()
 
     def die(self):
         self.vely = 0
@@ -51,6 +66,9 @@ class Player(Entity):
         self.vely = -3
 
     def update(self, tick):
+        if self.blockselector_exists and not self.canbuild:
+            self.blockselector.destroy()
+            self.blockselector_exists = False
 
         # break blocks
         if (self.world.game.rc.clicked or self.world.game.mrc.clicked) and self.canbreak:
@@ -69,8 +87,8 @@ class Player(Entity):
                             i.remove(j)
                             del j
 
-
-        if (self.world.game.lc.clicked or self.world.game.mlc.clicked) and self.canbuild:
+        # build
+        if (self.world.game.lc.clicked or self.world.game.mlc.clicked) and self.canbuild and self.world.game.lc.event.widget == self.world:
 
             isBlock = False
             if self.world.game.mlc.clicked:
@@ -84,12 +102,25 @@ class Player(Entity):
             for i in RenderItems:
                 for j in i:
                     if j.type != "ENTITY":
-                        if j.tileX == blockX and j.tileY == blockY:
+                        if j.tileX == blockX and j.tileY == blockY and j.collider:
                             isBlock = True
 
             # creating Blocks
             if not isBlock:
-                Grass(blockX, blockY)
+                for i in RenderItems:
+                    for j in i:
+                        if j.type != "ENTITY":
+                            if j.tileX == blockX and j.tileY == blockY:
+                                i.remove(j)
+                                del j
+                if self.typevar.get() == "Water":
+                    execstring = self.typevar.get() + f"({blockX}, {blockY}, {self.world.game})"
+                else:
+                    execstring = self.typevar.get() + f"{blockX, blockY}"
+                try:
+                    exec(execstring)
+                except Exception as e:
+                    print(str(e) + execstring)
 
 
         self.speed = self.startspeed
@@ -151,7 +182,7 @@ class Player(Entity):
 
         self.world.yOff = -(self.y) + self.world.h/2
 
-
+        # movement
         self.y += self.vely
         if self.world.game.space.clicked and (self.onground or self.inwater):
             if self.inwater:

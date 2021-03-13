@@ -9,7 +9,7 @@ from Entities.Player import *
 from ENTITY.Background import *
 from GLOBAL import *
 
-blockList = {"Grass": "G", "Brick": "B"}
+
 LevelData = {}
 
 def SpawnTiles(list, world):

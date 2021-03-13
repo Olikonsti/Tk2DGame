@@ -39,6 +39,9 @@ class Entity():
 
         RenderItems[layer].append(self)
 
+    def kill(self):
+        pass
+
     def calc_pos(self):
         pass
 

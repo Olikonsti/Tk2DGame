@@ -4,6 +4,8 @@ from PIL import ImageTk
 from PIL import ImageOps
 from Config import *
 
+
+blockList = ["Grass", "Brick", "Water - BROKEN", "Dirt", "Dirt2", "GrassBottom", "GrassBunch", "Roots", "Chest"]
 RenderItems = []
 
 for i in range(RenderLayers):  # -
@@ -12,6 +14,7 @@ def unloadItems():
     for i in range(100000):
         for i in RenderItems:
             for j in i:
+                j.kill()
                 i.remove(j)
     print(len(RenderItems))
     sum = 0

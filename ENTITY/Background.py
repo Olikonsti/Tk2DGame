@@ -30,6 +30,9 @@ class Background():
 
         RenderItems[self.layer].append(self)
 
+    def kill(self):
+        pass
+
     def calc_pos(self):
         pass
 
