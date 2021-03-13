@@ -1,5 +1,5 @@
 from World import *
-from pygame import time
+import pygame as pg
 from imageKey import KeyBind
 from Events import *
 from PauseMenu import *
@@ -9,12 +9,16 @@ class Game(Tk):
     def __init__(self):
         Tk.__init__(self)
 
-        self.tps_clock = time.Clock()
+        self.fps_clock = pg.time.Clock()
         self.ticks = 0
         self.paused = False
+        self.title(Title + " - " + Version)
+        self.iconbitmap(TexturePath + "icon.ico")
 
         self.d = KeyBind("d", self, self.loop)
         self.a = KeyBind("a", self, self.loop)
+        self.mlc = KeyBind("B1-Motion", self, self.loop, release="ButtonRelease-1")
+        self.mrc = KeyBind("B3-Motion", self, self.loop, release="ButtonRelease-3")
         self.lc = KeyBind("Button-1", self, self.loop, release="ButtonRelease-1")
         self.rc = KeyBind("Button-3", self, self.loop, release="ButtonRelease-3")
         self.space = KeyBind("space", self, self.loop)
@@ -28,7 +32,7 @@ class Game(Tk):
 
 
         while True:
-            self.tps_clock.tick(TPS)
+            self.fps_clock.tick(FPS)
             self.loop()
 
     def pause(self, event = None):

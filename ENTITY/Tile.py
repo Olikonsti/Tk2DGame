@@ -18,6 +18,9 @@ class Tile():
         self.image_ = self.image_original.resize((TileSize, TileSize),Image.BOX)
         self.image = ImageTk.PhotoImage(self.image_)
 
+        self.image_width = TileSize
+        self.image_height = TileSize
+
         self.layer = 0
         self.draw_type = "IMAGE"
 
@@ -39,6 +42,15 @@ class Tile():
         self.height = TileSize
 
         RenderItems[layer].append(self)
+
+    def getTileAbove(self):
+        block = None
+        for i in RenderItems:
+            for j in i:
+                if j.type == "TILE":
+                    if j.tileX == self.tileX and j.tileY == self.tileY - 1:
+                        block = j
+        return block
 
     def mirror_sprite(self):
         self.image_ = ImageOps.mirror(self.image_)

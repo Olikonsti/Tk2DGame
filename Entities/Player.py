@@ -14,6 +14,9 @@ class Player(Entity):
         self.startx = x
         self.starty = y
 
+        self.canbuild = True
+        self.canbreak = True
+
         self.name = "PLAYER"
 
         self.walk_direction = "R"
@@ -49,18 +52,19 @@ class Player(Entity):
 
     def update(self, tick):
 
-        if self.world.game.rc.clicked:
+        # break blocks
+        if (self.world.game.rc.clicked) and self.canbreak:
             blockX = round((self.world.game.rc.event.x - self.world.xOff) / TileSize)
             blockY = round((self.world.game.rc.event.y - self.world.yOff) / TileSize)
             for i in RenderItems:
                 for j in i:
                     if j.type != "ENTITY":
                         if j.tileX == blockX and j.tileY == blockY:
-                            print("delet")
                             i.remove(j)
                             del j
 
-        if self.world.game.lc.clicked:
+
+        if (self.world.game.lc.clicked) and self.canbuild:
             isBlock = False
             blockX  = round((self.world.game.lc.event.x - self.world.xOff) / TileSize)
             blockY = round((self.world.game.lc.event.y - self.world.yOff) / TileSize)
@@ -68,7 +72,6 @@ class Player(Entity):
                 for j in i:
                     if j.type != "ENTITY":
                         if j.tileX == blockX and j.tileY == blockY:
-                            print("cannot place")
                             isBlock = True
 
             # creating Blocks

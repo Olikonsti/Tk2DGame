@@ -6,9 +6,11 @@ from Tiles.Brick import *
 from Tiles.Chest import *
 from Tiles.Water import *
 from Entities.Player import *
+from ENTITY.Background import *
 from GLOBAL import *
 
-blockList = ["Grass", "Brick"]
+blockList = {"Grass": "G", "Brick": "B"}
+LevelData = {}
 
 def SpawnTiles(list, world):
     print("Starting Load of " + list)
@@ -16,13 +18,16 @@ def SpawnTiles(list, world):
         f = open(LevelPath + list, "r")
         data = f.read()
         f.close()
-        exec("global datanew; datanew = " + data)
+        exec(data)
+
     except Exception as e:
         print(e)
+
     list = datanew
 
+
     print("Spawing World Tiles")
-    if genGround:
+    if LevelData["ground"]:
         groundOffset = 17
         for i in range(50):
             #GrassBottom(i, groundOffset - 1, layer=10)
@@ -33,15 +38,25 @@ def SpawnTiles(list, world):
             for j in range(5):
                 Dirt(i, j + 2 + groundOffset)
 
+    # create Background
+    Background(650, 500, "gamebg.png", 1700, 1100)
+
     for i in range(28):
         for j in range(200):
             tile = list[i+2][j]
+
+            if tile[0] in blockList:
+                print("FOUND")
 
             if tile[0] == "G":
                 Grass(j + x_w_off, i + y_w_off)
 
             elif tile[0] == "P":
-                Player(world.w/2, world.h/2, world)
+                a = Player(world.w/2, world.h/2, world)
+                print("Loading Map Player attributes:")
+                for k in LevelData["Player"]:
+                    print(k + ": " + str(LevelData["Player"][k]))
+                    exec(f'a.{k} = {LevelData["Player"][k]}')
 
             elif tile[0] == "W":
                 block = None
@@ -53,12 +68,7 @@ def SpawnTiles(list, world):
 
             elif tile[0] == "C":
                 a = Chest(j + x_w_off, i + y_w_off)
-                try:
-                    exec("global NBT; NBT = C" + tile[1])
-                    print(f"NBT of item {NBT}")
-                    a.NBT = NBT
-                except Exception as e:
-                    print(e)
+                a.NBT = LevelData["Chest"]["C" + tile[1]]
 
 
             elif tile[0] == "D":

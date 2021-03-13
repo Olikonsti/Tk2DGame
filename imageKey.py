@@ -39,6 +39,9 @@ class KeyBind():
         self.app_loop = loop
         self.master = master
         self.master.bind("<" + key + ">", self.click)
+        self.event = Event()
+        self.event.x = 0
+        self.event.y = 0
         if release == None:
             self.master.bind("<KeyRelease-" + key + ">", self.unclick)
         else:
