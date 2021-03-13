@@ -34,6 +34,7 @@ datanew = \
 
 global LevelData
 LevelData = {
+    "bg": "gamebg.png",
     "ground": False,
     "Player": {
         "canbuild": True,

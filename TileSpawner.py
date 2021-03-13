@@ -39,7 +39,8 @@ def SpawnTiles(list, world):
                 Dirt(i, j + 2 + groundOffset)
 
     # create Background
-    Background(650, 500, "gamebg.png", 1700, 1100)
+    if LevelData["bg"] != None:
+        Background(650, 500, LevelData["bg"], 1700, 1100)
 
     for i in range(28):
         for j in range(200):
