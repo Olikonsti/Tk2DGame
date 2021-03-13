@@ -1,5 +1,6 @@
 from ENTITY.Tile import *
 from Events import *
+from ENTITY.Entity import *
 
 class Explosive(Tile):
     def __init__(self, tx, ty):
@@ -11,10 +12,18 @@ class Explosive(Tile):
 
     def showAnimation(self):
         self.exploded = True
+
         self.texture_change("Explosive3.png")
+        QEvent(str(self) + "animation2", self.game, 10, self.showAnimation2)
+
+    def showAnimation2(self):
+        self.exploded = True
+        self.explosion = Entity(self.x, self.y, 60, "Explosion.png", 100, 100)
+        self.texture_change("Explosion.png")
         QEvent(str(self) + "realExplode", self.game, 10, self.explode)
 
     def explode(self):
+        self.explosion.killEntity()
         for i in RenderItems:
             for j in i:
                 if j.type != "ENTITY" and j.name == self.name:

@@ -21,7 +21,9 @@ class World(Canvas):
         self.xOff = self.startxOff
         self.yOff = self.startyOff
 
-        self.load("teststage.lvl")
+        self.current_lvl = "teststage.lvl"
+
+        self.load(self.current_lvl)
 
         self.place(x=-30, y=-30)
 
@@ -32,7 +34,7 @@ class World(Canvas):
         self.xOff = self.startxOff
         self.yOff = self.startyOff
 
-
+        self.current_lvl = lvl
         SpawnTiles(lvl, self)
 
     def unload(self):
@@ -80,3 +82,4 @@ class World(Canvas):
                 if DrawCollision:
                     for b in j.collisionBoxes:
                         self.create_rectangle(b.x - (b.x2 - b.x)/2 + self.xOff, b.y - (b.y2 - b.y)/2 + self.yOff, b.x2 - (b.x2 - b.x)/2 + self.xOff, b.y2 - (b.y2 - b.y)/2 + self.yOff, outline=b.color, stipple='gray50', fill=b.color)
+

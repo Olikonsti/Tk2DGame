@@ -17,12 +17,15 @@ class Game(Tk):
         self.title(Title + " - " + Version)
         self.iconbitmap(TexturePath + "icon.ico")
 
+
+
         self.d = KeyBind("d", self, self.loop)
         self.a = KeyBind("a", self, self.loop)
         self.mlc = KeyBind("B1-Motion", self, self.loop, release="ButtonRelease-1")
         self.mrc = KeyBind("B3-Motion", self, self.loop, release="ButtonRelease-3")
         self.lc = KeyBind("Button-1", self, self.loop, release="ButtonRelease-1")
         self.rc = KeyBind("Button-3", self, self.loop, release="ButtonRelease-3")
+        self.shift = KeyBind("Shift_L", self, self.loop)
         self.space = KeyBind("space", self, self.loop)
         self.resizable(False, False)
         self.bind("<Escape>", self.pause)
@@ -52,7 +55,9 @@ class Game(Tk):
 
     def loop(self):
         self.fps_clock.tick(FPS)
-        if self.ticks % 3 == 0 or self.paused:
+        if self.ticks % 30 == 0:
+            self.title(Title + " - " + Version + " - " + self.level.current_lvl)
+        if self.ticks % 2 == 0 or self.paused:
             self.update()
         else:
             self.update_idletasks()

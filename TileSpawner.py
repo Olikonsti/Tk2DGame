@@ -8,6 +8,7 @@ from Tiles.Wood import *
 from Tiles.Explosive import *
 from Tiles.Acid import *
 from Tiles.Lava import *
+from Tiles.Nuke import *
 from Tiles.Virus import *
 from Tiles.Water import *
 from Entities.Player import *

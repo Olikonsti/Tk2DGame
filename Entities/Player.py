@@ -184,6 +184,10 @@ class Player(Entity):
         self.world.yOff = -(self.y) + self.world.h/2
 
         # movement
+
+        if self.world.game.shift.clicked:
+            self.speed = self.speed * 1.5
+
         self.y += self.vely
         if self.world.game.space.clicked and (self.onground or self.inwater):
             if self.inwater:
@@ -198,6 +202,7 @@ class Player(Entity):
         if self.world.game.d.clicked and not collisionx2:
             self.animate(tick, self.walk_direction)
             if self.walk_direction == "L":
+                self.world.game.a.clicked = False
                 self.walk_direction = "R"
                 self.mirror_sprite()
             self.x += self.speed
@@ -207,6 +212,7 @@ class Player(Entity):
         if self.world.game.a.clicked and not collisionx1:
             self.animate(tick, self.walk_direction)
             if self.walk_direction == "R":
+                self.world.game.d.clicked = False
                 self.walk_direction = "L"
                 self.mirror_sprite()
             self.x -= self.speed

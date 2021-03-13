@@ -1,6 +1,6 @@
 TexturePath = "textures/"
 LevelPath = "lvl/"
-Version = "v1.4"
+Version = "v1.5"
 Title = "Tk´s Adventure"
 RenderLayers = 70
 TPS = 44

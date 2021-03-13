@@ -42,6 +42,14 @@ class Entity():
     def kill(self):
         pass
 
+    def killEntity(self):
+        for i in RenderItems:
+            for j in i:
+                if j.type == "ENTITY":
+                    if j.x == self.x and j.y == self.y:
+                        i.remove(j)
+                        del j
+
     def calc_pos(self):
         pass
 

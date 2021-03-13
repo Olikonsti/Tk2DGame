@@ -41,9 +41,22 @@ class PauseMenu(tk.Frame):
         self.levelsFrame = tk.LabelFrame(self, text="Load Maps", bg=self.bg, fg=self.fg)
         self.levelsFrame.pack()
 
+        self.reloadLevel = tk.Button(self.levelsFrame, text="Reload This Level", command=self.reloadlevel)
+        self.reloadLevel.config(bg=self.bg, fg=self.fg)
+        self.reloadLevel.pack(pady=(10,10), padx=20)
+
         for i in levels:
             if i.endswith(".lvl"):
                 Level(i, self.levelsFrame, self)
+
+    def reloadlevel(self):
+        self.focus()
+        self.update()
+        self.hide()
+        self.game.paused = False
+        self.game.level.unload()
+
+        self.game.level.load(self.game.level.current_lvl)
 
 
     def hide(self):
