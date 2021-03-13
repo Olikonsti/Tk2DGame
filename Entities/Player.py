@@ -113,10 +113,7 @@ class Player(Entity):
                             if j.tileX == blockX and j.tileY == blockY:
                                 i.remove(j)
                                 del j
-                if self.typevar.get() == "Water":
-                    execstring = self.typevar.get() + f"({blockX}, {blockY}, {self.world.game})"
-                else:
-                    execstring = self.typevar.get() + f"{blockX, blockY}"
+                execstring = self.typevar.get() + f"{blockX, blockY}"
                 try:
                     exec(execstring)
                 except Exception as e:

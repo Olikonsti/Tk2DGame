@@ -5,8 +5,9 @@ from PIL import ImageOps
 from Config import *
 
 
-blockList = ["Grass", "Brick", "Wood", "Dirt", "Dirt2", "GrassBottom", "GrassBunch", "Roots", "Chest"]
+blockList = ["Grass", "Brick", "Wood", "Dirt", "Dirt2", "Water", "Explosive", "GrassBottom", "GrassBunch", "Roots", "Chest"]
 RenderItems = []
+GlobalGame = []
 
 for i in range(RenderLayers):  # -
     RenderItems.append([])  # -

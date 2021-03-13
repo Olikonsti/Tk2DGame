@@ -9,6 +9,8 @@ class Game(Tk):
     def __init__(self):
         Tk.__init__(self)
 
+        GlobalGame.append(self)
+
         self.fps_clock = pg.time.Clock()
         self.ticks = 0
         self.paused = False
