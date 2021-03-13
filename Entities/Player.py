@@ -63,7 +63,7 @@ class Player(Entity):
             self.texture_change(texture)
 
     def waterjump(self):
-        self.vely = -3
+        self.vely = -2.5
 
     def update(self, tick):
         if self.blockselector_exists and not self.canbuild:

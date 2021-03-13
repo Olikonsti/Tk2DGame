@@ -1,1 +1,1 @@
-pyinstaller --onefile main.py
+pyinstaller --onefile --icon=textures/icon.ico main.py
