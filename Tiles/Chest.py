@@ -5,6 +5,7 @@ class Chest(Tile):
         Tile.__init__(self, tx, ty, 20, "Chest.png")
         self.name = "Chest"
         self.collider = False
+        self.waterloggable = True
 
 
     def update(self, tick):
