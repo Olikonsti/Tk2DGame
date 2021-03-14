@@ -57,6 +57,9 @@ def SpawnTiles(list, world):
             if tile[0] == "G":
                 Grass(j + x_w_off, i + y_w_off)
 
+            if tile[0] == "S":
+                Spikes(j + x_w_off, i + y_w_off)
+
             elif tile[0] == "P":
                 a = Player(world.w/2, world.h/2, world)
                 print("Loading Map Player attributes:")
@@ -74,6 +77,9 @@ def SpawnTiles(list, world):
                 elif tile[1] == "D":
                     block = "Dirt2"
                 Water(j + x_w_off, i + y_w_off, world.game, BLOCK=block)
+
+            elif tile[0] == "M":
+                Lava(j + x_w_off, i + y_w_off)
 
             elif tile[0] == "C":
                 a = Chest(j + x_w_off, i + y_w_off)

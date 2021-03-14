@@ -40,3 +40,17 @@ class GrassBottom(Tile):
     def update(self, tick):
 
         Tile.update(self, tick)
+
+class Spikes(Tile):
+    def __init__(self, tx, ty, layer=40):
+        Tile.__init__(self, tx, ty, layer, "Spikes.png")
+        self.name = "Spikes"
+        if random.choice([1, 0]) == 0:
+            self.mirror_sprite()
+        self.collider = False
+        self.waterloggable = True
+
+
+    def update(self, tick):
+
+        Tile.update(self, tick)

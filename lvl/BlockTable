@@ -10,6 +10,8 @@ W Wood
 
 L Water
     <1> Bg Block
+	
+M Lava
 
 C Chest
     <1> Tag # change NBT Data
