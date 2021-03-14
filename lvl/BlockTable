@@ -13,6 +13,8 @@ L Water
 	
 M Lava
 
+S Spikes
+
 C Chest
     <1> Tag # change NBT Data
 
