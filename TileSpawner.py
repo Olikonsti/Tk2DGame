@@ -6,6 +6,8 @@ from Tiles.Brick import *
 from Tiles.Chest import *
 from Tiles.Wood import *
 from Tiles.Explosive import *
+from Tiles.Leaves import *
+from Tiles.Log import *
 from Tiles.Acid import *
 from Tiles.Lava import *
 from Tiles.Nuke import *

@@ -20,27 +20,39 @@ class Virus(Tile):
         Y2IsTile = False
         for i in RenderItems:
             for j in i:
-                if j.name == "Virus":
+                if j.name != "Virus" and j.type == "TILE":
+                    #print(j.name)
                     if j.tileX == self.tileX + 1 and j.tileY == self.tileY:
                         X1IsTile = True
-                    if j.tileX == self.tileX - 1 and j.tileY == self.tileY:
+                    elif j.tileX == self.tileX - 1 and j.tileY == self.tileY:
                         X2IsTile = True
-                    if j.tileX == self.tileX and j.tileY == self.tileY + 1:
+                    elif j.tileX == self.tileX and j.tileY == self.tileY + 1:
                         Y1IsTile = True
-                    if j.tileX == self.tileX and j.tileY == self.tileY - 1:
+                    elif j.tileX == self.tileX and j.tileY == self.tileY - 1:
                         Y2IsTile = True
 
-        if not Y1IsTile and tick % 5 == 0:
-            QEvent("CreateVirus", self.game, 2, lambda: Virus(self.tileX, self.tileY + 1, self.game))
+        if Y1IsTile and tick % 5 == 0:
+            self.killblock(self.tileX, self.tileY + 1)
+            Virus(self.tileX, self.tileY + 1, self.game)
+            #QEvent(self, self.game, 1, lambda: Virus(self.tileX, self.tileY + 1, self.game))
 
-        if not Y2IsTile and tick % 5 == 0:
-            QEvent("CreateVirus", self.game, 2, lambda: Virus(self.tileX, self.tileY - 1, self.game))
+        if Y2IsTile and tick % 5 == 0:
+            self.killblock(self.tileX, self.tileY - 1)
+            Virus(self.tileX, self.tileY - 1, self.game)
+            #QEvent(self, self.game, 1, lambda: Virus(self.tileX, self.tileY - 1, self.game))
 
-        if not X2IsTile and tick % 5 == 0:
-            QEvent("CreateVirus", self.game, 2, lambda: Virus(self.tileX - 1, self.tileY, self.game))
 
-        if not X1IsTile and tick % 5 == 0:
-            QEvent("CreateVirus", self.game, 2, lambda: Virus(self.tileX + 1, self.tileY, self.game))
+        if X2IsTile and tick % 5 == 0:
+            self.killblock(self.tileX - 1, self.tileY)
+            Virus(self.tileX - 1, self.tileY, self.game)
+            #QEvent(self, self.game, 1, lambda: Virus(self.tileX - 1, self.tileY, self.game))
+
+
+        if X1IsTile and tick % 5 == 0:
+            self.killblock(self.tileX + 1, self.tileY)
+            Virus(self.tileX - 1, self.tileY, self.game)
+            #QEvent(self, self.game, 1, lambda: Virus(self.tileX + 1, self.tileY, self.game))
+
 
 
 

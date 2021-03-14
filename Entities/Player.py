@@ -37,7 +37,7 @@ class Player(Entity):
         self.typevar.set(blockList[0])
         self.blockselector = OptionMenu(self.world.game, self.typevar, *blockList)
         self.blockselector.config(background="#252525", highlightthickness=0, width=20, fg="lightgrey")
-        self.blockselector["menu"].config(bg="#252525", fg="lightgrey", bd=0)
+        self.blockselector["menu"].config(bg="#252525", fg="lightgrey", bd=0, font="Helvetica 20")
         self.blockselector.pack(side=BOTTOM)
 
     def kill(self):
@@ -49,6 +49,12 @@ class Player(Entity):
         self.y = self.starty
         self.world.xOff = self.world.startxOff
         self.world.yOff = self.world.startyOff
+        self.world.onScreenMessages.append("You died!")
+        QEvent("PlayerDieRemoveMessage", self.world.game, 100, lambda: self.removeDeathMessage())
+
+    def removeDeathMessage(self):
+        print("cleared messages")
+        self.world.onScreenMessages.clear()
 
     def animate(self, tick, direction):
         texture = None

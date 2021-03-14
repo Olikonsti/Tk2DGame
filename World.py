@@ -18,6 +18,8 @@ class World(Canvas):
         self.startxOff = 30
         self.startyOff = 30
 
+        self.onScreenMessages = []
+
         self.xOff = self.startxOff
         self.yOff = self.startyOff
 
@@ -27,7 +29,7 @@ class World(Canvas):
 
         self.place(x=-30, y=-30)
 
-        self.backThread = Thread(target=self.backEndLoop)
+        self.hoverBlock = None
         #self.backThread.start()
 
     def load(self, lvl):
@@ -41,14 +43,17 @@ class World(Canvas):
         clear_events()
         unloadItems()
 
-    def backEndLoop(self):
-        while True:
-            self.tps_clock.tick(TPS)
-            for i in RenderItems:
-                for j in i:
-                    j.update(self.game.ticks)
-
     def update_world(self, tick):
+        blockX = round((self.game.motion.event.x - self.xOff) / TileSize)
+        blockY = round((self.game.motion.event.y - self.yOff) / TileSize)
+        self.found = False
+        for i in RenderItems:
+            for j in i:
+                if j.type != "ENTITY":
+                    if j.tileX == blockX and j.tileY == blockY:
+                        self.hoverBlock = j
+                        self.found = True
+
         for i in RenderItems:
             for j in i:
                 j.update(self.game.ticks)
@@ -82,4 +87,10 @@ class World(Canvas):
                 if DrawCollision:
                     for b in j.collisionBoxes:
                         self.create_rectangle(b.x - (b.x2 - b.x)/2 + self.xOff, b.y - (b.y2 - b.y)/2 + self.yOff, b.x2 - (b.x2 - b.x)/2 + self.xOff, b.y2 - (b.y2 - b.y)/2 + self.yOff, outline=b.color, stipple='gray50', fill=b.color)
+
+        if self.found:
+            self.create_text(90, 40, text=self.hoverBlock.name + " (" + str(self.hoverBlock.tileX) + ", " + str(self.hoverBlock.tileY) + ")")
+
+        for i in self.onScreenMessages:
+            self.create_text(self.w/2, 100*(self.onScreenMessages.index(i) + 1), text=i, font="Helvetica 32", fill="grey")
 
